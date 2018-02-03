@@ -19,9 +19,9 @@ try:
     sql = '''
     CREATE TABLE banned_subreddits (
       name varchar(22) PRIMARY KEY,
-      subscribers int(10),
-      reason varchar(300),
-      utc int(10)
+      title varchar(300),
+      ban_reason varchar(300),
+      ban_utc int(10),
     )
     '''
     cursor.execute(sql)
