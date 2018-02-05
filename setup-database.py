@@ -26,5 +26,15 @@ try:
     '''
     cursor.execute(sql)
 
+  with connection.cursor() as cursor:
+    sql = '''
+    CREATE TABLE removed_threads (
+      thread_id varchar(7) PRIMARY KEY,
+      subreddit varchar(22),
+      utc int(10)
+    )
+    '''
+    cursor.execute(sql)
+
 finally:
   connection.close()
