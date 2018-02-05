@@ -7,7 +7,6 @@ import json
 
 sys.path.append('../')
 from config import *
-from throwaway import *
 
 def save_to_database(threadID, subreddit, utc):
   connection = pymysql.connect(
