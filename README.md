@@ -32,8 +32,8 @@ python setup-database.py
 
 ## Generate removed threads
 ```
-cd removed-threads
 source .venv/bin/activate
+cd removed-threads
 python get-removed-threads.py
 ```
 ## Generate banned subs

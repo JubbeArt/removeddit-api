@@ -41,26 +41,24 @@ def save_to_database(threadID, subreddit, utc):
 
 def get_threads(token, after = ''):
   headers = {'Authorization': 'bearer ' + token, 'User-Agent': '{}/1.0 by {}'.format(appName, username)}
-  response = requests.get('https://oauth.reddit.com/r/undelete?limit=1&after={}'.format(after), headers=headers)
+  response = requests.get('https://oauth.reddit.com/r/undelete?limit=100&after={}'.format(after), headers=headers)
   return response.json()
 
 def extract_threads(resp):
   children = resp['data']['children']
   return [child['data'] for child in children]
 
-
-before = thread['data']['before']
-
 token = get_token()
-
+after = ''
+i = 0
 
 while True:
   if random.random() < 0.01:
     token = get_token()
 
-  response = get_threads(token)
+  response = get_threads(token, after)
   after = response['data']['after']
-  threads = extract_threads(thread)
+  threads = extract_threads(response)
 
   for thread in threads:
     if thread['link_flair_text'] == '[META]':
@@ -68,12 +66,22 @@ while True:
 
     url = thread['url']
     parts = url.split('/')
+    subreddit = parts[4]
+    threadID = parts[6]
+    print(subreddit, threadID, i)
+    i += 1
 
-    
-
-  if after:
+    try:
+      save_to_database(threadID, subreddit, int(thread['created_utc']))
+    except pymysql.err.IntegrityError as e:
+      if e.args[0] == 1062:
+        print('ALREADY IN DATABASE')
+      else:
+        print(e)
+        exit()
+  if not after:
     break
   
-    #save_to_database()
+    
 
 
