@@ -2,4 +2,4 @@
 HOST     = 'localhost'
 DB_NAME  = 'removeddit'
 USER     = 'root'
-PASSWORD = 'root'
+PASSWORD = 'supernicepassword'
