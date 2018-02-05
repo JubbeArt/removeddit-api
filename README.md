@@ -3,10 +3,24 @@ Closed (for now) API for removeddit.
 
 # Endpoints
 
-## /api/banned
+## /api/threads
+Get a list of removed thread ids
+
+### Params
+page: integer (starts at 0)
+
+subreddit: string 
+
+## /api/subreddits
+Get a list of banned subs
+
+### Params
+page: integer (starts at 0)
 
 
-# Development
+
+# Production
+
 ## MySQL
 ```
 sudo apt update
@@ -19,23 +33,18 @@ mysql_secure_installation
 ```
 sudo apt install build-essential python3-dev python3-pip
 sudo -H pip3 install virtualenv
-virtualenv -p python3 .venv
-source .venv/bin/activate
-pip install -r requirements.txt
 ```
 ## Database
-Set database info in `config.py` and the run
+Set database info in `config.py` and then import the database provided in the repo
 
+```
+mysql -u root -p removeddit < removeddit.sql
+```
+
+Alternatively create an empty database with
 ```
 python setup-database.py
 ```
-## Start uwsgi server
-```
-source .venv/bin/activate
-uwsgi --http :9000 --wsgi-file api.py --callable app
-```
-
-# Production
 
 ## Server directory
 ```
