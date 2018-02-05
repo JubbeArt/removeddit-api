@@ -66,7 +66,7 @@ while True:
 
     url = thread['url']
     parts = url.split('/')
-    subreddit = parts[4]
+    subreddit = parts[4].lower()
     threadID = parts[6]
     print(subreddit, threadID, i)
     i += 1

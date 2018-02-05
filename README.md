@@ -29,19 +29,8 @@ Set database info in `config.py` and the run
 ```
 python setup-database.py
 ```
-
-## Generate removed threads
+## Start uwsgi server
 ```
 source .venv/bin/activate
-cd removed-threads
-python get-removed-threads.py
-```
-## Generate banned subs
-**WARNING: be careful running these scripts. The first script uses 2 GB of RAM and the second one runs 32 terminals in parallel. Save other stuff before running this, it might just crach your computer** 
-```
-cd banned-subreddits
-# Approximate 3 min
-python quarantined-subs.py
-# Approximate 2 hours
-bash banned-subs-parallel.sh
+uwsgi --http :9000 --wsgi-file api.py --callable app
 ```

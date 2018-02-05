@@ -46,7 +46,7 @@ while True:
         print('SOMETHING WRONG WITH URL:', parts, flush=True)
         continue
 
-      subreddit = parts[4]
+      subreddit = parts[4].lower()
       threadID = parts[6]
       utc = int(thread['created_utc'])
 

@@ -73,7 +73,7 @@ while True:
     parts = url.split('/')
     if len(parts) < 7:
         continue
-    subreddit = parts[4]
+    subreddit = parts[4].lower()
     threadID = parts[6]
     utc = int(thread['created_utc'])
     print('{:<22} {:<8} {:<12} {:<5}'.format(subreddit, threadID, utc, counter), end='')
