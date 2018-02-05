@@ -21,7 +21,7 @@ try:
       name varchar(22) PRIMARY KEY,
       title varchar(300),
       ban_reason varchar(300),
-      ban_utc int(10),
+      ban_utc int(10)
     )
     '''
     cursor.execute(sql)

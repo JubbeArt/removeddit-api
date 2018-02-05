@@ -18,10 +18,15 @@ with gzip.open(zippedFile, 'rb') as zippedF:
       
       # Quarantine will be None if it is banned or private
       # It will be false otherwise (but it will never True) 
+      title = subreddit['title']
+
+      if title is None:
+        title = ''       
+      
       if subreddit['quarantine'] is None:
         outputF.write('{}>{}\n'.format(
-          subreddit['display_name'], 
-          subreddit['title'],
+          subreddit['display_name'].replace('\n', ' '), 
+          title.replace('\n', ' '),
         ))
         #print(subreddit)
 
