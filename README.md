@@ -82,3 +82,7 @@ systemctl start emperor.uwsgi
 See https://github.com/JubbeArt/removeddit
 
 Just removed the comments for the /api/ route. 
+
+# Testing
+source .venv/bin/activate
+uwsgi --http :9000 --module=api:app

@@ -5,6 +5,8 @@ from config import *
 
 class RemovedThreads:
   def on_get(self, req, resp):
+    resp.set_header('Access-Control-Allow-Origin', '*')
+
     connection = pymysql.connect(
       host=HOST,
       user=USER,
